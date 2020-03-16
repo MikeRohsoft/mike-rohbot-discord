@@ -1,0 +1,19 @@
+{
+  "name": "discordbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "corona": "git+https://github.com/MikeRohsoft/mikes-corona-api.git",
+    "discord.js": "^12.0.2",
+    "open-weather": "git+https://github.com/MikeRohsoft/mikes-open-weather-api.git",
+    "random-cat": "git+https://github.com/MikeRohsoft/mikes-random-cat-api.git",
+    "time-str": "git+https://github.com/MikeRohsoft/mikes-time-str.git"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
