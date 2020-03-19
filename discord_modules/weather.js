@@ -1,6 +1,6 @@
 const weatherAPI = require('open-weather');
 
-module.exports = (msg, args, client) => {
+module.exports = (msg, args) => {
     const search = args.join(' ');
     let city;
     let country = '';
@@ -32,7 +32,7 @@ module.exports = (msg, args, client) => {
                 name: 'flag',
                 value: `:flag_${res.country.toLowerCase()}:`,
                 inline: true,
-            })
+            });
         }
         msg.channel.send({
             embed: {

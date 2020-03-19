@@ -1,30 +1,29 @@
 const {timeToStr} = require('time-str');
 
-module.exports = (msg, args, client) => {
+module.exports = (msg) => {
     if (!msg.guild) {
         console.log('guild not found');
         return;
     }
     const guild = msg.guild;
-    let count = 0;
+    let channelCount = 0;
     for (const _ of guild.channels.cache) {
-        count++;
+        channelCount++;
     }
-    const channelCount = count;
     const now = new Date().getTime();
-    const out = [
-        { name: 'name', value: guild.name, inline: false },
-        { name: 'id', value: guild.id, inline: false },
-        { name: 'region', value: guild.region.toString(), inline: false },
-        { name: 'createdAt', value: guild.createdAt.toString(), inline: false },
-        { name: 'time since created', value: timeToStr(now - guild.createdAt.getTime()), inline: false },
-        { name: 'owner', value: guild.owner.toString(), inline: false },
-        { name: 'memberCount', value: guild.memberCount.toString(), inline: true },
-        { name: 'channelCount', value: channelCount.toString(), inline: true },
-    ];
+    const timeStr = timeToStr(now - guild.createdAt.getTime());
     const obj = {
         embed: {
-            fields: out,
+            fields: [
+                { inline: false, name: 'name', value: guild.name,                           },
+                { inline: false, name: 'id', value: guild.id,                               },
+                { inline: false, name: 'region', value: guild.region.toString(),            },
+                { inline: false, name: 'createdAt', value: guild.createdAt.toString(),      },
+                { inline: false, name: 'time since created', value: timeStr,                },
+                { inline: false, name: 'owner', value: guild.owner.toString(),              },
+                { inline: true,  name: 'memberCount', value: guild.memberCount.toString(),  },
+                { inline: true,  name: 'channelCount', value: channelCount.toString(),      },
+            ],
         }
     };
     if (!!guild.iconURL) {

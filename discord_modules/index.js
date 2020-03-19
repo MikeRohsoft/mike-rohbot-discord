@@ -1,4 +1,5 @@
 const {kick, ban} = require('./kick_ban');
+const {rps, rpsls} = require('./rock-paper-scissors');
 
 module.exports = {
     corona: {
@@ -27,4 +28,10 @@ module.exports = {
         required: 'KICK_MEMBERS',
         guild: true,
     },
+    rps: {
+        run: rps,
+    },
+    rpsls: {
+        run: rpsls,
+    }
 }

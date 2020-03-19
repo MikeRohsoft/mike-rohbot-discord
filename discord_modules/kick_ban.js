@@ -25,14 +25,15 @@ function kick_ban(msg, args, command) {
             return msg.reply(`you are not allowed to doing that`);
         }
         const func = usr[command];
-        if (typeof func === 'function') {
-            func.call(usr).then().catch(e => {
-                if (e.hasOwnProperty('message')) {
-                    msg.reply(`ERROR: ${e.message}`);
-                }
-            });
+        if (typeof func !== 'function') {
+            return;
         }
-    });
+        func.call(usr).then().catch(e => {
+            if (e.hasOwnProperty('message')) {
+                msg.reply(`ERROR: ${e.message}`);
+            }
+        });
+    }).catch(console.error);
 }
 
 

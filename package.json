@@ -8,6 +8,7 @@
     "discord.js": "^12.0.2",
     "open-weather": "git+https://github.com/MikeRohsoft/mikes-open-weather-api.git",
     "random-cat": "git+https://github.com/MikeRohsoft/mikes-random-cat-api.git",
+    "rock-paper-scissors": "git+https://github.com/MikeRohsoft/mikes-rock-paper-scissors.git",
     "time-str": "git+https://github.com/MikeRohsoft/mikes-time-str.git"
   },
   "devDependencies": {},

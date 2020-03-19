@@ -26,12 +26,18 @@ function messageHandler(msg) {
         return;
     }
 
+    if (!msg.guild 
+        && modules[command].hasOwnProperty('guild') 
+        && modules[command].guild) {
+            return;
+    }
+
     const now = new Date().getTime();
     if (!blackList.hasOwnProperty(msg.author.id)) {
         blackList[msg.author.id] = {}
         blackList[msg.author.id][command] = now;
     } else if (blackList[msg.author.id].hasOwnProperty(command)) {
-        if (blackList[msg.author.id][command] + timeoutTime > now) {
+        if (blackList[msg.author.id][command] + timeoutTime > now && msg.author.id !== msg.guild.owner.id) {
             const restTime = (blackList[msg.author.id][command] + timeoutTime) - now;
             const str = `You can not call this command for ${timeToStr(restTime)}`;
             return msg.channel.send(str);
@@ -41,14 +47,11 @@ function messageHandler(msg) {
     } else {
         blackList[msg.author.id][command] = now;
     }
-    if (!msg.guild 
-        && modules[command].hasOwnProperty('guild') 
-        && modules[command].guild) {
-            return;
-    }
+
     if (!modules[command].hasOwnProperty('required')) {
         return modules[command].run(msg, args, client);
     }
+
     const requirements = modules[command].required;
     
     if (msg.member.hasPermission(requirements, {
